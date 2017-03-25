@@ -14,6 +14,10 @@
       <button data-bind="click: signIn, visible: !user()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
         Sign in
       </button>
+      <span class="user" data-bind="visible: user()">
+        <img class="avatar" data-bind="attr: { src: user().image }" />
+        <span class="name" data-bind="text: user().name" />
+      </span>
       <button data-bind="click: signOut, visible: user()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
         Sign out
       </button>

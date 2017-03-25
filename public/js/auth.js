@@ -1,31 +1,20 @@
-var signInForDevice = function() {
-    var mobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    mobile ? signInWithRedirect() : signInWithPopup();
-};
+function Auth() {
+    var signInWithRedirect = () => firebase.auth().signInWithRedirect(authProvider);
 
-var signInWithRedirect = function() {
-    firebase.auth().signInWithRedirect(getAuthProvider());
-};
+    var signInWithPopup = () => firebase.auth().signInWithPopup(authProvider).then(handleSignIn).catch(handleSignInError);
 
-var signInWithPopup = function() {
-    firebase.auth().signInWithPopup(getAuthProvider()).then(handleSignIn).catch(handleSignInError);
-};
+    var signInForDevice = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ? signInWithRedirect : signInWithPopup;
 
-var getAuthProvider = function() {
-    return new firebase.auth.GoogleAuthProvider();
-};
+    var authProvider = new firebase.auth.GoogleAuthProvider();
 
-var handleSignIn = function(result) {
-    var user = result.user;
-    console.log(user);
-};
+    var handleSignIn = (result) => console.log(result);
 
-var handleSignInError = function(error) {
-    console.error(error);
-};
+    var handleSignInError = (error) => console.error(error);
 
-var initAuth = function() {
-    firebase.auth().getRedirectResult().then(handleSignIn).catch(handleSignInError);
-    document.querySelector("#signin").onclick = signInForDevice;
-};
-initAuth();
+    (() => {
+        firebase.auth().getRedirectResult().then(handleSignIn).catch(handleSignInError);
+        document.querySelector("#signin").onclick = signInForDevice;
+    })();
+}
+
+var auth = new Auth();

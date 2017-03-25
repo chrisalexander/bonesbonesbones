@@ -11,10 +11,14 @@ function Auth() {
 
     var handleSignInError = (error) => console.error(error);
 
+    this.getContainer = () => document.querySelector("#auth");
+
+    this.render = () => this.getContainer().style.display = "block";
+
+    this.signIn = signInForDevice;
+
     (() => {
         firebase.auth().getRedirectResult().then(handleSignIn).catch(handleSignInError);
-        document.querySelector("#signin").onclick = signInForDevice;
+        ko.applyBindings(this, this.getContainer());
     })();
 }
-
-var auth = new Auth();

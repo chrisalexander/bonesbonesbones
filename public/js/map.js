@@ -29,7 +29,18 @@ function Map() {
             mapTypeControl: false,
             streetViewControl: false,
             scaleControl: true,
-            fullscreenControl: false
+            fullscreenControl: false,
+            styles: [
+                {
+                    "featureType": "poi",
+                    "elementType": "labels",
+                    "stylers": [{ "visibility": "off" }]
+                },
+                {
+                    "featureType": "transit",
+                    "stylers": [{ "visibility": "off" }]
+                }
+            ]
         });
 
         auth = new Auth();

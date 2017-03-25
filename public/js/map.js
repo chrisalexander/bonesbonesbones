@@ -16,7 +16,6 @@ function Map() {
 
         auth = new Auth();
         map.controls[google.maps.ControlPosition.TOP_RIGHT].push(auth.getContainer());
-        auth.render();
     };
 }
 

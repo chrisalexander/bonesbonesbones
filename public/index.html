@@ -10,9 +10,12 @@
   <body>
     <div id="map"></div>
 
-    <div id="auth" style="display: none">
-      <button data-bind="click: signIn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+    <div id="auth">
+      <button data-bind="click: signIn, visible: !user()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
         Sign in
+      </button>
+      <button data-bind="click: signOut, visible: user()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        Sign out
       </button>
     </div>
 

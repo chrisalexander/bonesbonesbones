@@ -35,11 +35,9 @@ function Map() {
     };
 
     var nearbyPlaceMarkers = [];
-    this.showNearbyPlaces = searchTerm => {
-        removeNearbyPlaces();
-        placeService.nearbySearch({ keyword: searchTerm, location: map.getCenter(), radius: getCurrentRadius(), type: "point_of_interest" }, handleNearbyPlaces);
-    };
+    this.showNearbyPlaces = searchTerm => placeService.nearbySearch({ keyword: searchTerm, location: map.getCenter(), radius: getCurrentRadius(), type: "point_of_interest" }, handleNearbyPlaces);
     var handleNearbyPlaces = (results, status) => {
+        removeNearbyPlaces();
         results.map(r => {
             var marker = new google.maps.Marker({
                 position: { lat: r.geometry.location.lat(), lng: r.geometry.location.lng() },
@@ -69,7 +67,23 @@ function Map() {
             content: marker.source.name
         });
         currentInfoWindow.open(map, marker);
-    }; 
+    };
+
+    var currentBoundsTimeout = undefined;
+    var boundsChanged = () => {
+        if (currentBoundsTimeout) {
+            window.clearTimeout(currentBoundsTimeout);
+        }
+
+        currentBoundsTimeout = window.setTimeout(handleBoundsChanged, 1000);
+    };
+    var handleBoundsChanged = () => {
+        currentBoundsTimeout = false;
+
+        if (add.adding()) {
+            add.search();
+        }
+    };
 
     this.init = () => {
         map = new google.maps.Map(document.querySelector("#map"), {
@@ -95,6 +109,8 @@ function Map() {
         });
 
         placeService = new google.maps.places.PlacesService(map);
+
+        map.addListener("bounds_changed", boundsChanged);
 
         auth = new Auth();
         map.controls[google.maps.ControlPosition.TOP_RIGHT].push(auth.getContainer());

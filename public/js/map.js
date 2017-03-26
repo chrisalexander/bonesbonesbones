@@ -35,9 +35,11 @@ function Map() {
     };
 
     var nearbyPlaceMarkers = [];
-    this.showNearbyPlaces = searchTerm => placeService.nearbySearch({ keyword: searchTerm, location: map.getCenter(), radius: getCurrentRadius(), type: "point_of_interest" }, handleNearbyPlaces);
-    var handleNearbyPlaces = (results, status) => {
+    this.showNearbyPlaces = searchTerm => {
         removeNearbyPlaces();
+        placeService.nearbySearch({ keyword: searchTerm, location: map.getCenter(), radius: getCurrentRadius(), type: "point_of_interest" }, handleNearbyPlaces);
+    };
+    var handleNearbyPlaces = (results, status) => {
         results.map(r => {
             var marker = new google.maps.Marker({
                 position: { lat: r.geometry.location.lat(), lng: r.geometry.location.lng() },

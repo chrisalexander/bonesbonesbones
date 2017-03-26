@@ -15,5 +15,6 @@ function Config() {
     };
 
     this.current = getParams(window.location.search);
+    this.isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 }
 var config = new Config();

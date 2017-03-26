@@ -3,7 +3,7 @@ function Auth() {
 
     var signInWithRedirect = () => firebase.auth().signInWithRedirect(authProvider);
     var signInWithPopup = () => firebase.auth().signInWithPopup(authProvider).then(handleSignIn).catch(handleSignInError);
-    var signInForDevice = config.current.forceLoginRedirect || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ? signInWithRedirect : signInWithPopup;
+    var signInForDevice = config.current.forceLoginRedirect || config.isMobile ? signInWithRedirect : signInWithPopup;
 
     var handleSignIn = (result) => {
         this.user(result.user ? { "name": result.user.displayName, "image": result.user.photoURL } : false);

@@ -8,7 +8,10 @@ function Add(authModel, mapModel) {
         map.showNearbyPlaces();
         this.adding(true);
         this.searchTerm("");
-        focusSearchBox();
+
+        if (!config.isMobile) {
+            focusSearchBox();
+        }
     }
     this.adding = ko.observable(false);
 

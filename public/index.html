@@ -12,7 +12,10 @@
     <div id="map"></div>
 
     <div id="auth">
-      <button data-bind="click: signIn, visible: !user()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+      <span class="checking" data-bind="visible: !hasUser()">
+        Loading...
+      </span>
+      <button data-bind="click: signIn, visible: (!user() && hasUser())" style="display: none" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
         Sign in
       </button>
       <span class="user" data-bind="visible: user()">
@@ -38,6 +41,7 @@
       };
       firebase.initializeApp(config);
     </script>
+    <script src="js/config.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoh11PZN2XMimO7fS9HjXQq0PVBe2nksI&callback=map.init" async defer></script>

@@ -21,7 +21,8 @@ body {
     border: 1px solid #fff;
 }
 
-#auth .name {
+#auth .name,
+#auth .checking {
     font-size: 16px;
     vertical-align: middle;
     margin-right: 5px;

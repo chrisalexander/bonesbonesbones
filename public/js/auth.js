@@ -3,9 +3,12 @@ function Auth() {
 
     var signInWithRedirect = () => firebase.auth().signInWithRedirect(authProvider);
     var signInWithPopup = () => firebase.auth().signInWithPopup(authProvider).then(handleSignIn).catch(handleSignInError);
-    var signInForDevice = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ? signInWithRedirect : signInWithPopup;
+    var signInForDevice = config.current.forceLoginRedirect || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ? signInWithRedirect : signInWithPopup;
 
-    var handleSignIn = (result) => this.user(result.user ? { "name": result.user.displayName, "image": result.user.photoURL } : false);
+    var handleSignIn = (result) => {
+        this.user(result.user ? { "name": result.user.displayName, "image": result.user.photoURL } : false);
+        this.hasUser(true);
+    };
     var handleSignInError = (error) => console.error(error);
 
     var signOut = () => firebase.auth().signOut().then(handleSignOut).catch(handleSignOutError);
@@ -19,6 +22,7 @@ function Auth() {
     this.signOut = signOut;
 
     this.user = ko.observable(false);
+    this.hasUser = ko.observable(false);
 
     (() => {
         firebase.auth().getRedirectResult().then(handleSignIn).catch(handleSignInError);

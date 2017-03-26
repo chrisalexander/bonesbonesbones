@@ -28,8 +28,12 @@
     </div>
 
     <div id="add">
-      <button data-bind="click: add" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+      <button data-bind="click: add, visible: !adding()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
         <i class="material-icons">add</i>
+      </button>
+      <input class="searchbox" type="text" data-bind="visible: adding(), textInput: searchTerm"></input>
+      <button data-bind="click: search, visible: adding()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+        <i class="material-icons">search</i>
       </button>
     </div>
 
@@ -51,6 +55,6 @@
     <script src="js/auth.js"></script>
     <script src="js/add.js"></script>
     <script src="js/map.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoh11PZN2XMimO7fS9HjXQq0PVBe2nksI&callback=map.init" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoh11PZN2XMimO7fS9HjXQq0PVBe2nksI&callback=map.init&libraries=places,geometry" async defer></script>
   </body>
 </html>

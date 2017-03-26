@@ -3,6 +3,7 @@ function Map() {
 
     var map = undefined;
     var auth = undefined;
+    var add = undefined;
 
     var updateLocation = () => {
         if (navigator.geolocation) {
@@ -45,6 +46,9 @@ function Map() {
 
         auth = new Auth();
         map.controls[google.maps.ControlPosition.TOP_RIGHT].push(auth.getContainer());
+
+        add = new Add(auth);
+        map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(add.getContainer());
 
         updateLocation();
     };

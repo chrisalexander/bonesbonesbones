@@ -66,9 +66,19 @@ function Map() {
         }
 
         currentInfoWindow = new google.maps.InfoWindow({
-            content: marker.source.name
+            content: marker.source.name + "<br /><a href=\"#\" onclick=\"map.infoWindowLinkClicked()\">See details &raquo;</a>"
         });
         currentInfoWindow.open(map, marker);
+    };
+
+    this.infoWindowLinkClicked = () => {
+        showDetails(currentInfoWindow.anchor.source.place_id, currentInfoWindow.anchor.source);
+        currentInfoWindow.close();
+    };
+
+    var showDetails = (placeId, cachedPlaceObject) => {
+        console.log(placeId);
+        console.log(cachedPlaceObject);
     };
 
     var currentBoundsTimeout = undefined;

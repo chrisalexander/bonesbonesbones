@@ -129,7 +129,7 @@ function Map() {
         map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(add.getContainer());
 
         details = new Details();
-        map.controls[google.maps.ControlPosition.LEFT_CENTER].push(details.getContainer());
+        map.controls[google.maps.ControlPosition.LEFT_TOP].push(details.getContainer());
 
         updateLocation();
     };

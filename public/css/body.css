@@ -46,3 +46,14 @@ textarea:focus, input:focus{
     border-radius: 10px 0px 0px 10px;
     border: 1px solid #999;
 }
+
+#details {
+    margin-left: 10px;
+    margin-top: 55px;
+    height: 50%;
+    width: 70%;
+    background-color: #fff;
+    overflow: auto;
+    padding: 10px;
+    border-radius: 10px;
+}

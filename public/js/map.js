@@ -8,6 +8,8 @@ function Map() {
     var details = undefined;
     var currentInfoWindow = undefined;
 
+    this.getContainer = () => document.querySelector("#map");
+
     var updateLocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -95,8 +97,11 @@ function Map() {
         }
     };
 
+    var showDetails = () => this.getContainer().classList.add("showdetails");
+    var hideDetails = () => this.getContainer().classList.remove("showdetails");
+
     this.init = () => {
-        map = new google.maps.Map(document.querySelector("#map"), {
+        map = new google.maps.Map(this.getContainer(), {
             center: defaultLocation,
             zoom: 11,
             scrollwheel: true,
@@ -121,6 +126,7 @@ function Map() {
         placeService = new google.maps.places.PlacesService(map);
 
         map.addListener("bounds_changed", boundsChanged);
+        map.addListener("click", hideDetails);
 
         auth = new Auth();
         map.controls[google.maps.ControlPosition.TOP_RIGHT].push(auth.getContainer());
@@ -129,7 +135,7 @@ function Map() {
         map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(add.getContainer());
 
         details = new Details();
-        map.controls[google.maps.ControlPosition.LEFT_TOP].push(details.getContainer());
+        details.showDetails.subscribe(v => v ? showDetails() : hideDetails());
 
         updateLocation();
     };

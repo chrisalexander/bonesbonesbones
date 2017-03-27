@@ -5,6 +5,7 @@ function Map() {
     var placeService = undefined;
     var auth = undefined;
     var add = undefined;
+    var details = undefined;
     var currentInfoWindow = undefined;
 
     var updateLocation = () => {
@@ -76,10 +77,7 @@ function Map() {
         currentInfoWindow.close();
     };
 
-    var showDetails = (placeId, cachedPlaceObject) => {
-        console.log(placeId);
-        console.log(cachedPlaceObject);
-    };
+    var showDetails = (placeId, cachedPlaceObject) => details.show(placeId, cachedPlaceObject);
 
     var currentBoundsTimeout = undefined;
     var boundsChanged = () => {
@@ -129,6 +127,9 @@ function Map() {
 
         add = new Add(auth, this);
         map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(add.getContainer());
+
+        details = new Details();
+        map.controls[google.maps.ControlPosition.LEFT_CENTER].push(details.getContainer());
 
         updateLocation();
     };

@@ -79,7 +79,10 @@ function Map() {
         currentInfoWindow.close();
     };
 
-    var showDetails = (placeId, cachedPlaceObject) => details.show(placeId, cachedPlaceObject);
+    var showDetails = (placeId, cachedPlaceObject) => {
+        details.show(placeId, cachedPlaceObject);
+        showDetailsPane();
+    };
 
     var currentBoundsTimeout = undefined;
     var boundsChanged = () => {
@@ -97,8 +100,8 @@ function Map() {
         }
     };
 
-    var showDetails = () => this.getContainer().classList.add("showdetails");
-    var hideDetails = () => this.getContainer().classList.remove("showdetails");
+    var showDetailsPane = () => this.getContainer().classList.add("showdetails");
+    var hideDetailsPane = () => this.getContainer().classList.remove("showdetails");
 
     this.init = () => {
         map = new google.maps.Map(this.getContainer(), {
@@ -126,7 +129,7 @@ function Map() {
         placeService = new google.maps.places.PlacesService(map);
 
         map.addListener("bounds_changed", boundsChanged);
-        map.addListener("click", hideDetails);
+        map.addListener("click", hideDetailsPane);
 
         auth = new Auth();
         map.controls[google.maps.ControlPosition.TOP_RIGHT].push(auth.getContainer());
@@ -135,7 +138,7 @@ function Map() {
         map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(add.getContainer());
 
         details = new Details();
-        details.showDetails.subscribe(v => v ? showDetails() : hideDetails());
+        details.showDetails.subscribe(v => v ? showDetailsPane() : hideDetailsPane());
 
         updateLocation();
     };

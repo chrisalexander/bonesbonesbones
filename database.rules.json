@@ -1,6 +1,18 @@
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null"
+    "votes": {
+      "$uid": {
+        ".read": false,
+        ".write": "$uid === auth.uid"
+      }
+    },
+    "locations": {
+      ".read": true,
+      ".write": false
+    },
+    "geofire": {
+      ".read": true,
+      ".write": false
+    }
   }
 }

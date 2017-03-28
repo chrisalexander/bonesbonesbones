@@ -103,6 +103,8 @@ function Map() {
     var showDetailsPane = () => this.getContainer().classList.add("showdetails");
     var hideDetailsPane = () => this.getContainer().classList.remove("showdetails");
 
+    this.getGoogleDetails = (placeId, callback) => placeService.getDetails({ placeId: placeId }, callback);
+
     this.init = () => {
         map = new google.maps.Map(this.getContainer(), {
             center: defaultLocation,
@@ -137,7 +139,7 @@ function Map() {
         add = new Add(auth, this);
         map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(add.getContainer());
 
-        details = new Details();
+        details = new Details(this);
         details.showDetails.subscribe(v => v ? showDetailsPane() : hideDetailsPane());
 
         updateLocation();

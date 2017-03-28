@@ -10,7 +10,10 @@
   </head>
   <body>
     <div id="details" data-bind="visible: showDetails()">
-      Details
+      <div class="header" data-bind="text: heading().name, style: { backgroundImage: 'url(\'' + heading().image + '\')' }, css: { withimage: heading().image }"></div>
+      <div class="content">
+        <div class="vicinity" data-bind="text: heading().vicinity"></div>
+      </div>
     </div>
 
     <div id="map"></div>

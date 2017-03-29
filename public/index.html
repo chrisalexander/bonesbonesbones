@@ -12,7 +12,8 @@
     <div id="details" data-bind="visible: showDetails()">
       <div class="header" data-bind="text: heading().name, style: { backgroundImage: 'url(\'' + heading().image + '\')' }, css: { withimage: heading().image }"></div>
       <div class="content">
-        <div class="vicinity" data-bind="text: heading().vicinity"></div>
+        <span class="vicinity" data-bind="text: heading().vicinity"></span>
+        <span class="attribution" data-bind="visible: heading().imageAttr">Photo: <span data-bind="html: heading().imageAttr"></span></span>
       </div>
     </div>
 

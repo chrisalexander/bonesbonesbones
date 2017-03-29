@@ -13,6 +13,7 @@ textarea:focus, input:focus{
     height: 100%;
     margin-left: 0;
     transition: margin-left 1s cubic-bezier(0.65, 0.05, 0.36, 1);
+    box-shadow: -5px -15px 20px rgba(63, 63, 63, 0.34);
 }
 
 #map.showdetails {
@@ -73,6 +74,11 @@ textarea:focus, input:focus{
     text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, -1px 1px 0 #fff, 1px -1px 0 #fff;
     background-size: cover;
     background-position-y: bottom;
+}
+
+#details .attribution {
+    float: right;
+    font-size: 12px;
 }
 
 #details .content {

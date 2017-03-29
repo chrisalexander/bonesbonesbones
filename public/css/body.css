@@ -62,6 +62,14 @@ textarea:focus, input:focus{
     height: 100%;
 }
 
+#details .back {
+    float: right;
+    font-weight: bold;
+    padding: 10px;
+    text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, -1px 1px 0 #fff, 1px -1px 0 #fff;
+    text-decoration: none;
+}
+
 #details .header {
     padding: 20px;
     font-weight: bold;

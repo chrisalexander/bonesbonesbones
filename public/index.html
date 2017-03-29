@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
   </head>
   <body>
-    <div id="details" data-bind="visible: showDetails()">
+    <div id="details">
+      <a class="back" href="#" data-bind="click: hide()">Back &raquo;</a>
       <div class="header" data-bind="text: heading().name, style: { backgroundImage: 'url(\'' + heading().image + '\')' }, css: { withimage: heading().image }"></div>
       <div class="content">
         <span class="vicinity" data-bind="text: heading().vicinity"></span>

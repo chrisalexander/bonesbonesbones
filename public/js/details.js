@@ -34,7 +34,7 @@ function Details(mapModel) {
     };
 
     this.hide = () => this.showDetails(false);
-
+    
     (() => {
         ko.applyBindings(this, this.getContainer());
     })();

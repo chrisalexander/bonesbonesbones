@@ -73,7 +73,7 @@ function Map() {
         }
 
         currentInfoWindow = new google.maps.InfoWindow({
-            content: marker.source.name + "<br /><a href=\"#\" onclick=\"map.infoWindowLinkClicked()\">See details &raquo;</a>"
+            content: marker.source.name + "<br /><a href=\"#\" onclick=\"map.infoWindowLinkClicked()\">&laquo; See details</a>"
         });
         currentInfoWindow.open(map, marker);
     };

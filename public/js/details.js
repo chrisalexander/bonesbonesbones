@@ -5,6 +5,7 @@ function Details(mapModel) {
 
     this.showDetails = ko.observable(false);
     this.heading = ko.observable(false);
+    this.googleDetails = ko.observable(false);
 
     this.show = (placeId, cachedPlaceObject) => {
         map.getGoogleDetails(placeId, handleGoogleDetails);
@@ -30,11 +31,14 @@ function Details(mapModel) {
             return;
         }
 
-
+        this.googleDetails(place);
+        console.log(place);
     };
 
+    this.getPhoneNumber = () => this.googleDetails() && this.googleDetails().international_phone_number ? 'tel:' + this.googleDetails().international_phone_number : null;
+
     this.hide = () => this.showDetails(false);
-    
+
     (() => {
         ko.applyBindings(this, this.getContainer());
     })();

@@ -15,6 +15,16 @@
       <div class="content">
         <span class="vicinity" data-bind="text: heading().vicinity"></span>
         <span class="attribution" data-bind="visible: heading().imageAttr">Photo: <span data-bind="html: heading().imageAttr"></span></span>
+
+        <div class="google" data-bind="visible: googleDetails()">
+          <div class="additionalDetails">Additional details provided by Google</div>
+
+          <ul class="contact">
+            <li><a href="#" target="_blank" data-bind="attr: { href: googleDetails().url }">Directions</a></li>
+            <li><a href="#" data-bind="attr: { href: getPhoneNumber() }">Call</a></li>
+            <li><a href="#" target="_blank" data-bind="attr: { href: googleDetails().website }">Website</a></li>
+          </ul>
+        </div>
       </div>
     </div>
 

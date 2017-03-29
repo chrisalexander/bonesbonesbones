@@ -98,3 +98,22 @@ textarea:focus, input:focus{
 #details .content {
     padding: 10px;
 }
+
+#details .additionalDetails {
+    text-align: right;
+    padding: 10px 20px 0;
+    font-size: 12px;
+    font-style: italic;
+    color: #999;
+}
+
+#details .contact {
+    text-align: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+#details .content li {
+    display: inline-block;
+    width: 100px;
+}

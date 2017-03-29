@@ -1,12 +1,12 @@
 function Map() {
     var defaultLocation = { lat: 51.512416, lng: -0.114123};
 
-    var map = undefined;
-    var placeService = undefined;
-    var auth = undefined;
-    var add = undefined;
-    var details = undefined;
-    var currentInfoWindow = undefined;
+    var map = null;
+    var placeService = null;
+    var auth = null;
+    var add = null;
+    var details = null;
+    var currentInfoWindow = null;
 
     this.getContainer = () => document.querySelector("#map");
 
@@ -38,12 +38,13 @@ function Map() {
     };
 
     var nearbyPlaceMarkers = [];
-    this.showNearbyPlaces = searchTerm => {
-        removeNearbyPlaces();
-        placeService.nearbySearch({ keyword: searchTerm, location: map.getCenter(), radius: getCurrentRadius(), type: "point_of_interest" }, handleNearbyPlaces);
-    };
+    this.showNearbyPlaces = searchTerm => placeService.nearbySearch({ keyword: searchTerm, location: map.getCenter(), radius: getCurrentRadius(), type: "point_of_interest" }, handleNearbyPlaces);
     var handleNearbyPlaces = (results, status) => {
         results.map(r => {
+            if (nearbyPlaceMarkers.some(m => m.source.place_id == r.place_id)) {
+                return;
+            }
+
             var marker = new google.maps.Marker({
                 position: { lat: r.geometry.location.lat(), lng: r.geometry.location.lng() },
                 map: map,
@@ -58,10 +59,13 @@ function Map() {
             marker.addListener("click", () => markerClicked(marker));
             nearbyPlaceMarkers.push(marker);
         });
-    };
-    var removeNearbyPlaces = () => {
-        nearbyPlaceMarkers.map(m => m.setMap(null));
-        nearbyPlaceMarkers = [];
+
+        for (var i = nearbyPlaceMarkers.length - 1; i >= 0; i--) {
+            if (!results.some(r => r.place_id == nearbyPlaceMarkers[i].source.place_id)) {
+                nearbyPlaceMarkers[i].setMap(null);
+                nearbyPlaceMarkers.splice(i, 1);
+            }
+        }
     };
     var markerClicked = marker => {
         if (currentInfoWindow) {
@@ -84,7 +88,7 @@ function Map() {
         showDetailsPane();
     };
 
-    var currentBoundsTimeout = undefined;
+    var currentBoundsTimeout = null;
     var boundsChanged = () => {
         if (currentBoundsTimeout) {
             window.clearTimeout(currentBoundsTimeout);

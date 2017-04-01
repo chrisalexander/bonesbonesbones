@@ -19,7 +19,39 @@
         <div class="google" data-bind="visible: googleDetails()">
           <div class="additionalDetails">Additional details provided by Google</div>
 
-          <ul class="contact">
+          <ul class="locationDetails">
+            <li data-bind="visible: googleDetails().rating" class="wide">
+              <span class="starLabel">Rating:</span>
+              <ul class="stars">
+                <li data-bind="visible: googleDetails().rating < 0.2"><i class="material-icons">star_border</i></li>
+                <li data-bind="visible: googleDetails().rating >= 0.2 && googleDetails().rating <= 0.8"><i class="material-icons">star_half</i></li>
+                <li data-bind="visible: googleDetails().rating > 0.8"><i class="material-icons">star</i></li>
+
+                <li data-bind="visible: googleDetails().rating < 1.2"><i class="material-icons">star_border</i></li>
+                <li data-bind="visible: googleDetails().rating >= 1.2 && googleDetails().rating <= 1.8"><i class="material-icons">star_half</i></li>
+                <li data-bind="visible: googleDetails().rating > 1.8"><i class="material-icons">star</i></li>
+
+                <li data-bind="visible: googleDetails().rating < 2.2"><i class="material-icons">star_border</i></li>
+                <li data-bind="visible: googleDetails().rating >= 2.2 && googleDetails().rating <= 2.8"><i class="material-icons">star_half</i></li>
+                <li data-bind="visible: googleDetails().rating > 2.8"><i class="material-icons">star</i></li>
+
+                <li data-bind="visible: googleDetails().rating < 3.2"><i class="material-icons">star_border</i></li>
+                <li data-bind="visible: googleDetails().rating >= 3.2 && googleDetails().rating <= 3.8"><i class="material-icons">star_half</i></li>
+                <li data-bind="visible: googleDetails().rating > 3.8"><i class="material-icons">star</i></li>
+
+                <li data-bind="visible: googleDetails().rating < 4.2"><i class="material-icons">star_border</i></li>
+                <li data-bind="visible: googleDetails().rating >= 4.2 && googleDetails().rating <= 4.8"><i class="material-icons">star_half</i></li>
+                <li data-bind="visible: googleDetails().rating > 4.8"><i class="material-icons">star</i></li>
+              </ul>
+            </li>
+            <li class="wide">
+              <span data-bind="visible: googleDetails().opening_hours == null">Unknown opening hours</span>
+              <span data-bind="visible: googleDetails().opening_hours != null && googleDetails().opening_hours.open_now">Open now</span>
+              <span data-bind="visible: googleDetails().opening_hours != null && !googleDetails().opening_hours.open_now">Closed right now</span>
+            </li>
+          </ul>
+
+          <ul class="locationDetails">
             <li><a href="#" target="_blank" data-bind="attr: { href: googleDetails().url }, css: { disabled: !googleDetails().url }">Directions</a></li>
             <li><a href="#" data-bind="attr: { href: getPhoneNumber() }, css: { disabled: !getPhoneNumber() }">Call</a></li>
             <li><a href="#" target="_blank" data-bind="attr: { href: googleDetails().website }, css: { disabled: !googleDetails().website }">Website</a></li>

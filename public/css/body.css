@@ -107,17 +107,36 @@ textarea:focus, input:focus{
     color: #999;
 }
 
-#details .contact {
+.locationDetails {
     text-align: center;
     list-style-type: none;
     padding: 0;
 }
 
-#details .content li {
+.locationDetails li {
     display: inline-block;
     width: 80px;
 }
 
-#details .content li a.disabled {
+.locationDetails li a.disabled {
     color: #999;
+}
+
+.locationDetails li.wide {
+    width: 180px;
+    vertical-align: top;
+}
+
+.starLabel {
+    vertical-align: top;
+}
+
+ul.stars {
+    list-style-type: none;
+    display: inline;
+    padding: 0;
+}
+
+ul.stars li {
+    width: 20px;
 }

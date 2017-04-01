@@ -63,7 +63,7 @@ textarea:focus, input:focus{
 }
 
 #details .back {
-    float: right;
+    text-align: right;
     font-weight: bold;
     padding: 10px;
     text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, -1px 1px 0 #fff, 1px -1px 0 #fff;
@@ -115,5 +115,9 @@ textarea:focus, input:focus{
 
 #details .content li {
     display: inline-block;
-    width: 100px;
+    width: 80px;
+}
+
+#details .content li a.disabled {
+    color: #999;
 }

@@ -13,16 +13,16 @@
       <a class="back" href="#" data-bind="click: hide()">Back &raquo;</a>
       <div class="header" data-bind="text: heading().name, style: { backgroundImage: 'url(\'' + heading().image + '\')' }, css: { withimage: heading().image }"></div>
       <div class="content">
-        <span class="vicinity" data-bind="text: heading().vicinity"></span>
-        <span class="attribution" data-bind="visible: heading().imageAttr">Photo: <span data-bind="html: heading().imageAttr"></span></span>
+        <div class="attribution" data-bind="visible: heading().imageAttr">Photo: <span data-bind="html: heading().imageAttr"></span></div>
+        <div class="vicinity" data-bind="text: heading().vicinity"></div>
 
         <div class="google" data-bind="visible: googleDetails()">
           <div class="additionalDetails">Additional details provided by Google</div>
 
           <ul class="contact">
-            <li><a href="#" target="_blank" data-bind="attr: { href: googleDetails().url }">Directions</a></li>
-            <li><a href="#" data-bind="attr: { href: getPhoneNumber() }">Call</a></li>
-            <li><a href="#" target="_blank" data-bind="attr: { href: googleDetails().website }">Website</a></li>
+            <li><a href="#" target="_blank" data-bind="attr: { href: googleDetails().url }, css: { disabled: !googleDetails().url }">Directions</a></li>
+            <li><a href="#" data-bind="attr: { href: getPhoneNumber() }, css: { disabled: !getPhoneNumber() }">Call</a></li>
+            <li><a href="#" target="_blank" data-bind="attr: { href: googleDetails().website }, css: { disabled: !googleDetails().website }">Website</a></li>
           </ul>
         </div>
       </div>

@@ -44,7 +44,7 @@
                 <li data-bind="visible: googleDetails().rating > 4.8"><i class="material-icons">star</i></li>
               </ul>
             </li>
-            <li class="wide" data-bind="visible: googleDetails().opening_hours == null">
+            <li class="wide" data-bind="visible: googleDetails().hasOwnProperty('opening_hours')">
               <i class="material-icons">access_time</i>
               <span class="starLabel" data-bind="visible: googleDetails().opening_hours != null && googleDetails().opening_hours.open_now">Open now</span>
               <span class="starLabel" data-bind="visible: googleDetails().opening_hours != null && !googleDetails().opening_hours.open_now">Closed right now</span>

@@ -8,6 +8,7 @@ function Details(mapModel) {
     this.googleDetails = ko.observable(false);
 
     this.show = (placeId, cachedPlaceObject) => {
+        googleDetails(false);
         map.getGoogleDetails(placeId, handleGoogleDetails);
 
         var headingDetails = {};

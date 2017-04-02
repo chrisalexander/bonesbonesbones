@@ -63,7 +63,7 @@ textarea:focus, input:focus{
 }
 
 #details .back {
-    text-align: right;
+    float: right;
     font-weight: bold;
     padding: 10px;
     text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, -1px 1px 0 #fff, 1px -1px 0 #fff;
@@ -123,7 +123,7 @@ textarea:focus, input:focus{
 }
 
 .locationDetails li.wide {
-    width: 180px;
+    width: 240px;
     vertical-align: top;
 }
 

@@ -45,9 +45,10 @@
               </ul>
             </li>
             <li class="wide">
-              <span data-bind="visible: googleDetails().opening_hours == null">Unknown opening hours</span>
-              <span data-bind="visible: googleDetails().opening_hours != null && googleDetails().opening_hours.open_now">Open now</span>
-              <span data-bind="visible: googleDetails().opening_hours != null && !googleDetails().opening_hours.open_now">Closed right now</span>
+              <i class="material-icons">access_time</i>
+              <span class="starLabel" data-bind="visible: googleDetails().opening_hours == null">Unknown opening hours</span>
+              <span class="starLabel" data-bind="visible: googleDetails().opening_hours != null && googleDetails().opening_hours.open_now">Open now</span>
+              <span class="starLabel" data-bind="visible: googleDetails().opening_hours != null && !googleDetails().opening_hours.open_now">Closed right now</span>
             </li>
           </ul>
 
